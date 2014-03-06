@@ -20,7 +20,7 @@ module.exports = function($rootScope)
 		}
 
 		//Do we store the alert in flash for next page load or show immediately
-		flash ? next.push(alert) : $rootScope.alerts.push(alert)
+		flash ? next.unshift(alert) : $rootScope.alerts.unshift(alert)
 	}
 
 	//API: four type of errors and function to close all displayed alerts
