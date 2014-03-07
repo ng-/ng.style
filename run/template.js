@@ -53,7 +53,9 @@ exports.server = function($route)
 	{
 		if (server[i].template)
 		{
-			var split = server[i].template.split(/<|>/)
+			//split on < or > when not inside single or double quotes
+			//http://stackoverflow.com/questions/6462578/alternative-to-regex-match-all-instances-not-inside-quotes
+			var split = server[i].template.split(/[<>]+(?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/)
 
 			for (var j in split)
 			{
@@ -75,8 +77,6 @@ exports.server = function($route)
 			server[i].template = split.join('')
 		}
 	}
-
-	//console.log($route)
 }
 
 function br(all, num) { return Array( +num + 1 ).join('<br />')}
@@ -101,8 +101,7 @@ function cssStyle(e)
 {
 	var styles  = []
 
-	//for styles reference http://stackoverflow.com/questions/6462578/alternative-to-regex-match-all-instances-not-inside-quotes
-	e = e.replace(/[\w-]+:[\w-\d%#]+(?=([^"']*"[^"']*["'])*[^"']*$)/g, function(s)
+	e = e.replace(/[\w-]+:[\w-\d%#]+(?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/g, function(s)
 	{
 		styles.push(s); return ''
 	})
