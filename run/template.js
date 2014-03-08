@@ -55,7 +55,14 @@ exports.server = function($route)
 		{
 			//split on < or > when not inside single or double quotes
 			//http://stackoverflow.com/questions/6462578/alternative-to-regex-match-all-instances-not-inside-quotes
-			var split = server[i].template.split(/[<>]+(?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/)
+			///[<>](?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/ however this doesn't allow for "label's"
+			//so we need to escape all of the <> within quotes first before splitting the html then unescape at end
+			server[i].template = server[i].template.replace(/("|')(.*?)[^\\]\1/g, function(quote)
+			{
+				return quote.replace(/>/g, '&gte;').replace(/</g, '&lte;')
+			})
+
+			var split = server[i].template.split(/<|>/)
 
 			for (var j in split)
 			{
@@ -74,7 +81,7 @@ exports.server = function($route)
 				}
 			}
 
-			server[i].template = split.join('')
+			server[i].template = split.join('').replace(/&gte;/g, '>').replace(/&lte;/, '<')
 		}
 	}
 }
