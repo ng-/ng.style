@@ -48,39 +48,65 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 ## shorthand
 
 - **angular**
-Get rid of the ng- prefix for angular directives
+
+	Get rid of the ng- prefix for angular directives
+
+	```html
 		<div ng-click="fn()"></div>
-becomes
+	```
+	becomes
+
+	```html
 		<div click="fn()"></div>
+	```
 
 - **html**
-`<br 4>` becomes `<br><br><br><br>`
 
-`<nbs 3>` becomes `&nbsp;&nbsp;&nbsp;`
+	`<br 4>` becomes `<br><br><br><br>`
+
+	`<nbs 3>` becomes `&nbsp;&nbsp;&nbsp;`
 
 - **css**
-Use css style syntax directly in your html
+
+	Use css style syntax directly in your html
+
+	```html
 		<div .class1 .class2 #id1 #id2 style:1 style:2></div>
-becomes
+	```
+	becomes
+	```html
 		<div class="class1 class2" id="id1 id2" style="style:1; style:2"></div>
+	```
 
 - **javascript**
-js style comments are removed from the template
+
+	js style comments are removed from the template
+
+	```html
 		// inline comments will be removed
 
 		/*
 			block comments will be remove
 		*/
+	```
 
 - **bootstrap**
-Get rid of bootstrap's redundant classes.  For example, eliminate .btn
-		<div class="btn btn-default"></div>
-becomes
+
+	Get rid of bootstrap's redundant classes.  For example, eliminate .btn
+
+	```html
+			<div class="btn btn-default"></div>
+	```
+	becomes
+	```html
 		<div class="btn-default"></div>
+	```
 
 ## alerts
 In your templates
-		<alerts></alerts>
+```html
+	<alerts></alerts>
+```
 
 In your controllers
 ```javascript
@@ -92,10 +118,23 @@ ng.module('myProject').controller('myCtrl', function(alert)
 })
 ```
 Available methods are `info`, `success`, `warning`, `danger`.  These methods take two arguments: the alert's message, and truthy/falsy if the message should be flashed.
-As a helper, `alert.clear(all)` will clear all alerts on the current page.  If `all` is truthy, the flash messages on the next page will be cleared as well.
+
+An additional helper, `alert.clear(all)` will clear all alerts on the current page.  If `all` is truthy, the flash messages on the next page will be cleared as well.
 
 ## file inputs
 Inputs with type=file cannot be styled with css.  ng.style automatically makes these inputs invisible and moves all their attributes over a new button that can be styled.  The new button's onclick event will be set to activate the invisible file input.
+
+```html
+<input type="file"class="btn btn-danger btn-lg col-xs-5" value="Next Item">
+```
+becomes
+
+```html
+<input type="file" style="display:none;">
+
+<input type="button" class="btn btn-danger btn-lg col-xs-5" value="Next Item">
+
+```
 
 ## form groups
 
