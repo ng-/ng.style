@@ -49,7 +49,7 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 
 - **angular**
 
-	Get rid of the ng- prefix for angular directives
+	Get rid of the `ng-` prefix for angular directives
 
 	```html
 	<div click="fn()"></div>
@@ -69,36 +69,18 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 
 	Use css style syntax directly in your html
 
-	```html
-	<div .class1 .class2></div>
-	```
-	becomes
-	```html
-	<div class="class1 class2"></div>
-	```
+	`<div .class1 .class2></div>` becomes `<div class="class1 class2"></div>`
 
-	```html
-	<div #id1 #id2></div>
-	```
-	becomes
-	```html
-	<div id="id1 id2"></div>
-	```
+	`<div #id1 #id2></div>` becomes `<div id="id1 id2"></div>`
 
-	```html
-	<div style:1 style:2></div>
-	```
-	becomes
-	```html
-	<div style="style:1; style:2"></div>
-	```
+	`<div style:1 style:2></div>` becomes `<div style="style:1; style:2"></div>`
 
 - **javascript**
 
 	js style comments are removed from the template
 
 	```html
-	// inline comments will be removed
+	//	inline comments will be removed
 
 	/*
 		block comments will be removed
