@@ -52,12 +52,12 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	Get rid of the ng- prefix for angular directives
 
 	```html
-		<div ng-click="fn()"></div>
+	<div ng-click="fn()"></div>
 	```
 	becomes
 
 	```html
-		<div click="fn()"></div>
+	<div click="fn()"></div>
 	```
 
 - **html**
@@ -70,12 +70,12 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 
 	Use css style syntax directly in your html
 
-	```html
-		<div .class1 .class2 #id1 #id2 style:1 style:2></div>
+	```bash
+	<div .class1 .class2 #id1 #id2 style:1 style:2></div>
 	```
 	becomes
 	```html
-		<div class="class1 class2" id="id1 id2" style="style:1; style:2"></div>
+	<div class="class1 class2" id="id1 id2" style="style:1; style:2"></div>
 	```
 
 - **javascript**
@@ -83,11 +83,11 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	js style comments are removed from the template
 
 	```html
-		// inline comments will be removed
+	// inline comments will be removed
 
-		/*
-			block comments will be remove
-		*/
+	/*
+		block comments will be remove
+	*/
 	```
 
 - **bootstrap**
@@ -95,17 +95,17 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	Get rid of bootstrap's redundant classes.  For example, eliminate .btn
 
 	```html
-			<div class="btn btn-default"></div>
+	<div class="btn-default"></div>
 	```
 	becomes
 	```html
-		<div class="btn-default"></div>
+	<div class="btn btn-default"></div>
 	```
 
 ## alerts
 In your templates
 ```html
-	<alerts></alerts>
+<alerts></alerts>
 ```
 
 In your controllers
