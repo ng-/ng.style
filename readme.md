@@ -70,7 +70,7 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 
 	Use css style syntax directly in your html
 
-	```bash
+	```
 	<div .class1 .class2 #id1 #id2 style:1 style:2></div>
 	```
 	becomes
