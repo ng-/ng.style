@@ -3,7 +3,7 @@
 with angular came declarative html, now ng.style makes it beautiful. This module requires twitter bootstrap's css to be included in your application. Although the example below contains a lot of whitespace, ng.style - unlike many templating engines - is not whitespace sensitive.
 
 ## example
-```html
+```jade
 <div
 	label="Name"
 	.form-group
