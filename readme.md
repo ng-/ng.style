@@ -1,6 +1,6 @@
-# ng.style: beautiful html using twitter bootstrap
+# ng.style: beautiful html using bootstrap
 
-with angular came declarative html, now ng.style makes it beautiful. This module requires twitter bootstraps css to be included in your application.
+with angular came declarative html, now ng.style makes it beautiful. This module requires twitter bootstrap's css to be included in your application. Although the example below contains a lot of whitespace, ng.style - unlike many templating engines - is not whitespace sensitive.
 
 ## example
 ```html
@@ -47,36 +47,40 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 ```
 ## shorthand
 
-#### angular
+- **angular**
 Get rid of the ng- prefix for angular directives
-`<div ng-click="fn()"></div>` becomes `<div click="fn()"></div>`
+		<div ng-click="fn()"></div>
+becomes
+		<div click="fn()"></div>
 
-#### html
+- **html**
 `<br 4>` becomes `<br><br><br><br>`
+
 `<nbs 3>` becomes `&nbsp;&nbsp;&nbsp;`
 
-#### css
+- **css**
 Use css style syntax directly in your html
-```html
-<div .class1 .class2 #id1 #id2 style:1 style:2></div>
-```
+		<div .class1 .class2 #id1 #id2 style:1 style:2></div>
+becomes
+		<div class="class1 class2" id="id1 id2" style="style:1; style:2"></div>
 
-#### javascript
+- **javascript**
 js style comments are removed from the template
-`// inline comments will be removed`
-`/*
-	block comments will be remove
-*/`
+		// inline comments will be removed
 
-#### bootstrap
+		/*
+			block comments will be remove
+		*/
+
+- **bootstrap**
 Get rid of bootstrap's redundant classes.  For example, eliminate .btn
-`<div class="btn btn-default"></div>` becomes `<div class="btn-default"></div>`
+		<div class="btn btn-default"></div>
+becomes
+		<div class="btn-default"></div>
 
 ## alerts
 In your templates
-```html
-<alerts></alerts>
-```
+		<alerts></alerts>
 
 In your controllers
 ```javascript
