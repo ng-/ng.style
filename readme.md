@@ -1,4 +1,4 @@
-# ng.style: beautiful html using bootstrap
+# ng.style: beautiful html
 
 with angular came declarative html, now ng.style makes it beautiful. This module requires twitter bootstrap's css to be included in your application. Although the example below contains a lot of whitespace, ng.style - unlike many templating engines - is not whitespace sensitive.
 
@@ -52,12 +52,11 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	Get rid of the ng- prefix for angular directives
 
 	```html
-	<div ng-click="fn()"></div>
+	<div click="fn()"></div>
 	```
 	becomes
-
 	```html
-	<div click="fn()"></div>
+	<div ng-click="fn()"></div>
 	```
 
 - **html**
@@ -71,11 +70,27 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	Use css style syntax directly in your html
 
 	```html
-	<div .class1 .class2 #id1 #id2 style:1 style:2></div>
+	<div .class1 .class2></div>
 	```
 	becomes
 	```html
-	<div class="class1 class2" id="id1 id2" style="style:1; style:2"></div>
+	<div class="class1 class2"></div>
+	```
+
+	```html
+	<div #id1 #id2></div>
+	```
+	becomes
+	```html
+	<div id="id1 id2"></div>
+	```
+
+	```html
+	<div style:1 style:2></div>
+	```
+	becomes
+	```html
+	<div style="style:1; style:2"></div>
 	```
 
 - **javascript**
@@ -86,13 +101,15 @@ with angular came declarative html, now ng.style makes it beautiful. This module
 	// inline comments will be removed
 
 	/*
-		block comments will be remove
+		block comments will be removed
 	*/
+
+	<!-- html comments will remain untouched -->
 	```
 
 - **bootstrap**
 
-	Get rid of bootstrap's redundant classes.  For example, eliminate .btn
+	Get rid of bootstrap's redundant classes.  For example, eliminate `class="btn"`
 
 	```html
 	<div class="btn-default"></div>
@@ -117,7 +134,7 @@ ng.module('myProject').controller('myCtrl', function(alert)
 	alert.success('I am will show on the next page rather than the current one', true)
 })
 ```
-Available methods are `info`, `success`, `warning`, `danger`.  These methods take two arguments: the alert's message, and truthy/falsy if the message should be flashed.
+Available methods are `info`, `success`, `warning`, `danger`.  These methods take two arguments: the alert's message, and truthy/falsy if the message should be flashed. By default, alerts appear instantly.  Flashed messages, however, appear on the next page (e.g., route change) rather than the current page.
 
 An additional helper, `alert.clear(all)` will clear all alerts on the current page.  If `all` is truthy, the flash messages on the next page will be cleared as well.
 
@@ -138,27 +155,29 @@ becomes
 
 ## form groups
 
-Bootstraps form groups are painful and involve a lot of redundant code.  ng.style's formGroup directive will
+Bootstraps form groups are painful and involve a lot of redundant code. ng.style's form-group directive will
 - add the form-control class to child inputs
 - add an inline help-blocl if an error attribute is present
 - add a label and placeholder if a label attribute is present
 
 ```html
 <div class="form-group" label="Password" error="Must be at least 6 characters">
-	<input type="password" model="user.password" minlength="6" required>
+	<input type="password" model="password" minlength="6">
 </div>
 ```
 would become
 ```html
-<div class="form-group">
+<div class="form-group" ng-class="password.$invalid && 'has-error'">
 	<label for="label1">Password</label>
-	<input id="label1" placeholder="Password" type="password" model="user.password" minlength="6" required>
-	<span class="help-block">{{ form.user.password.$invalid ? "Must be at least 6 characters" : "&nbsp;"}}</span>
+	<input id="label1" placeholder="Password" type="password" model="password" minlength="6">
+	<span class="help-block">
+		{{ password.$invalid ? "Must be at least 6 characters" : "&nbsp;"}}
+	</span>
 </div>
 ```
 
 ## todos
-- Add aliases for other redundant bootstrap classes besides `btn`
+- Add aliases for other redundant bootstrap classes besides `class="btn"`
 
 ## related projects
 - [ng](https://github.com/ng-/ng): angular reimagined
