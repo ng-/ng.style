@@ -2,6 +2,48 @@
 //since it steals the server's templates and puts them on the client
 //we just need to modify the server's templates with our regexs first
 
+exports.server = function($routeProvider)
+{
+	var when = $routeProvider.when
+
+	$routeProvider.when = function(path, route)
+	{
+		//split on < or > when not inside single or double quotes
+		//http://stackoverflow.com/questions/6462578/alternative-to-regex-match-all-instances-not-inside-quotes
+		///[<>](?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/ however this doesn't allow for "label's"
+		//so we need to escape all of the <> within quotes first before splitting the html then unescape at end
+		route.template = route.template.replace(/("|')(.*?)[^\\]\1/g, function(quote)
+		{
+			return quote.replace(/>/g, '&gte;').replace(/</g, '&lte;')
+		})
+
+		var split = route.template.split(/<|>/)
+
+		for (var j in split)
+		{
+			var regex = text
+
+			if (j%2)
+			{
+				regex = tags
+
+				split[j] = '<'+split[j]+'>'
+			}
+
+			for (var k in regex)
+			{
+				split[j] = split[j].replace(regex[k][0], regex[k][1])
+			}
+		}
+
+		route.template = split.join('').replace(/&gte;/g, '>').replace(/&lte;/, '<')
+
+		when(path, route)
+
+		return this
+	}
+}
+
 //TODO make this a provider where you can register additional regex
 //TODO add ng-class and other directives that have html counterparts
 
@@ -43,48 +85,6 @@ var text =
 	[/\/\/.*/g,				''],  					//Strip out single-line comments
 	[/\/\*[\s\S]*?\*\//g, 	''],      				//Strip out block comments
 ]
-
-exports.server = function($route)
-{
-	console.log('Running style templates')
-	var server = $route.routes
-
-	for (var i in server)
-	{
-		if (server[i].template)
-		{
-			//split on < or > when not inside single or double quotes
-			//http://stackoverflow.com/questions/6462578/alternative-to-regex-match-all-instances-not-inside-quotes
-			///[<>](?=(?:[^']*'[^']*')*[^']*$)(?=(?:[^"]*"[^"]*")*[^"]*$)/ however this doesn't allow for "label's"
-			//so we need to escape all of the <> within quotes first before splitting the html then unescape at end
-			server[i].template = server[i].template.replace(/("|')(.*?)[^\\]\1/g, function(quote)
-			{
-				return quote.replace(/>/g, '&gte;').replace(/</g, '&lte;')
-			})
-
-			var split = server[i].template.split(/<|>/)
-
-			for (var j in split)
-			{
-				var regex = text
-
-				if (j%2)
-				{
-					regex = tags
-
-					split[j] = '<'+split[j]+'>'
-				}
-
-				for (var k in regex)
-				{
-					split[j] = split[j].replace(regex[k][0], regex[k][1])
-				}
-			}
-
-			server[i].template = split.join('').replace(/&gte;/g, '>').replace(/&lte;/, '<')
-		}
-	}
-}
 
 function br(all, num) { return Array( +num + 1 ).join('<br />')}
 

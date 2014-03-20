@@ -1,7 +1,7 @@
 {
    "name": "ng.style",
    "description": "simple data storage",
-	"version": "0.0.1-experimental1",
+	"version": "0.0.0-rc2",
    "author": {
       "name": "Adam Kircher"
    },

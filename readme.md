@@ -157,8 +157,14 @@ would become
 	</span>
 </div>
 ```
+#### 0.0.0-rc2
+- Changed from run to a config to ensure that it is run before ng.template transform
+
+#### 0.0.0-rc1
+- Initial commit
 
 ## todos
+- Feel free to email adam.kircher@gmail.com with suggestions!
 - Add aliases for other redundant bootstrap classes besides `class="btn"`
 
 ## related projects
