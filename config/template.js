@@ -36,7 +36,7 @@ exports.server = function($routeProvider)
 			}
 		}
 
-		route.template = split.join('').replace(/&gte;/g, '>').replace(/&lte;/, '<')
+		route.template = split.join('').replace(/&gte;/g, '>').replace(/&lte;/g, '<')
 
 		when(path, route)
 
